@@ -11,9 +11,7 @@ $conexion = new mysqli($servidor, $usuario, $password, $base_datos);
 // Verificando errores de conexión
 if ($conexion->connect_error) {
     die("Error de conexión:" - $conexion->connect_error);
-} else {
-    echo 'conexión OK'; 
-}
+} 
 
 // Estableciendo codificación de caracteres
 $conexion->set_charset("utf8");
