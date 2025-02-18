@@ -2,9 +2,9 @@
 session_start();
 
 if (!isset($_SESSION["cliente"])) {
-    $_SESSION["redirect_to"] = basename($_SERVER["PHP_SELF"]); // Guarda la pÃ¡gina actual para redireccionar nuevamente al origen.
-    // Si el usuario no estÃ¡ autenticado, redirigirlo a la pÃ¡gina de login
-    header("Location: login-cliente.php");
+    $_SESSION["redirect_to"] = basename($_SERVER["PHP_SELF"]); // Guarda la página actual para redireccionar nuevamente al origen.
+    // Si el cliente no está autenticado, redirigirlo a la página de login
+    header("Location: login-clientes.php");
     exit();
 }
 ?>

@@ -41,29 +41,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($usuario && password_verify($password, $usuario["password_usuario"])) {
         // Iniciar sesión con los datos del usuario
         $_SESSION["usuario"] = $usuario["nombre_usuario"];
-    
-        // Obtener la URL de redirección y luego eliminar la sesión
-        if (isset($_SESSION['redirect_to'])) {
-            $respuesta = [
-                "mensaje" => "Inicio de sesión exitoso.",
-                "status" => "ok"
-            ];
+                   
+        $respuesta = [
+            "mensaje" => "Inicio de sesión exitoso.",
+            "status" => "ok"
+        ];
         
-            echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON 
-            $respuesta = "";
-            header("Location: ../../" . $_SESSION['redirect_to']); // Redirigir al panel del cliente
-            exit();
-        } else {
-            $respuesta = [
-                "mensaje" => "Inicio de sesión exitoso.",
-                "status" => "ok"
-            ];
-        
-            echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON 
-            $respuesta = "";
-            header("Location: ../../index.php"); // Redirigir al panel del cliente
-            exit();
-        }
+        echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON 
+        $respuesta = "";
+        header("Location: ../../index.php"); // Redirigir al panel del cliente
+        exit();
+      
 
     } else {
         $respuesta = [
