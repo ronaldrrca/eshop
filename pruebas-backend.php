@@ -6,21 +6,25 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="./backend/clients/registro-clientes-back.php" METHOD="POST">
+    <form action="./backend/users/registro-usuarios-back.php" METHOD="POST">
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" id="">
-        <label for="email">Email</label>
+        <label for="usuario">Usuario</label>
+        <input type="text" name="usuario" id="">
+        <!-- <label for="email">Email</label>
         <input type="email" name="email" id="">
         <label for="email_confirmacion">Repita el email</label>
         <input type="email" name="email_confirmacion" id="">
         <label for="telefono">Teléfono</label>
         <input type="tel" name="telefono" id="">
         <label for="direccion">Dirección</label>
-        <input type="text" name="direccion" id="">
+        <input type="text" name="direccion" id=""> -->
         <label for="password">Password</label>
         <input type="password" name="password" id="">
         <label for="password_confirmacion">Password_confirmación</label>
         <input type="password" name="password_confirmacion" id="">
+        <label for="rol">Rol</label>
+        <input type="text" name="rol" id="">
         <button type="submit">Registrar</button>
     </form>
 </body>
