@@ -12,7 +12,8 @@ if ($conexion->connect_error) {
 }
 
 // Determinar el ID del cliente
-$id = (isset($_GET['id']) ? trim($_GET['id']) : "");
+$id = (isset($_POST['id']) ? trim($_POST['id']) : "");
+
 
 // Preparar la consulta
 $stmt = $conexion->prepare("CALL verInfoCliente(?)");
@@ -21,7 +22,7 @@ $stmt->execute();
 $resultado = $stmt->get_result();
 $cliente = $resultado->fetch_assoc();
 
-if ($cliente) {
+if ($cliente && $cliente['id_cliente'] == $_SESSION['id_cliente']) {
     $respuesta = [
         "mensaje" => "Cliente encontrado.",
         "status" => "ok",
@@ -32,7 +33,7 @@ if ($cliente) {
     ];
 } else {
     $respuesta = [
-        "mensaje" => "No se encontró el cliente.",
+        "mensaje" => "No se encontró el cliente, o no coincide con el id suministrado.",
         "status" => "error",
     ];
 }

@@ -41,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($cliente && password_verify($password, $cliente["password_cliente"])) {
         // Iniciar sesión con los datos del usuario
         $_SESSION["cliente"] = $cliente["nombre_cliente"];
+        $_SESSION['id_cliente'] = $cliente['id_cliente'];
         
         // Obtener la URL de redirección y luego eliminar la sesión
         if (isset($_SESSION['redirect_to'])) {
