@@ -55,9 +55,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
+            
+    if (strlen($password) < 6 || strlen($password) > 8) {
+        $respuesta = [
+            "mensaje" => "La contraseña debe tener entre 6 y 8 caracteres.",
+            "status" => "error"
+        ];
+        
+        echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
+        $respuesta = "";
+        header("Location: formulario-registro-cliente.php");
+        exit();
+    }
+
 
     // Verificar si el email ya está registrado
-    $stmt = $conexion->prepare("SELECT id_cliente FROM clientes WHERE email_cliente = ?");
+    $stmt = $conexion->prepare("CALL validarEmail(?)");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
@@ -122,5 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
     $conexion->close();
+} else {
+    echo 'No se recibieron datos';
 }
 ?>

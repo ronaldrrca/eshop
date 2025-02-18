@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="./backend/cliets/registro-de-clientes.php" METHOD="POST">
+    <form action="./backend/clients/registro-clientes-back.php" METHOD="POST">
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" id="">
         <label for="email">Email</label>
