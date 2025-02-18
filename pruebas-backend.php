@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="./backend/users/registro-usuarios-back.php" METHOD="POST">
+    <form action="./backend//users/registro-usuarios-back.php" METHOD="POST">
         <label for="nombre">Nombre</label>
         <input type="text" name="nombre" id="">
         <label for="usuario">Usuario</label>

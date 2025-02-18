@@ -69,6 +69,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 
+    // Verificar si el usuario ya está registrado
+    $stmt = $conexion->prepare("CALL validarUsuario(?)");
+    $stmt->bind_param("s", $usuario);
+    $stmt->execute();
+    $stmt->store_result();
+    if ($stmt->num_rows > 0) {
+        $respuesta = [
+            "mensaje" => "El usuario ya se encuentra registrado.",
+            "status" => "error"
+        ];
+        
+        echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
+        exit();
+        $respuesta = "";
+        header("Location: formulario-registro-usuarios.php");
+        exit();
+    }
+
+    $stmt->close();
+
+
     // Si todo salé bien a este punto...
 
     // Hashear la contrasheda antes de guardarla
