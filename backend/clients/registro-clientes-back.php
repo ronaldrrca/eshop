@@ -9,13 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = ucwords(strtolower(trim($_POST["nombre"])));
     $email = trim($_POST["email"]);
     $email_confirmacion = trim($_POST['email_confirmacion']);
-    $telefono = trim($_POST["telefono"]);
-    $direccion = trim($_POST["direccion"]);
+    $telefono = isset($_POST['telefono']) ? trim($_POST["telefono"]) : "";
+    $direccion = isset($_POST['direccion']) ? trim($_POST["direccion"]) : "";
     $password = trim($_POST["password"]);
     $password_confirmacion = trim($_POST["password_confirmacion"]);
 
     // Validar que los campos no estén vací­os
-    if (empty($nombre) || empty($email) || empty($telefono) || empty($direccion) || empty($password)) {
+    if (empty($nombre) || empty($email) || empty($password)) {
         $respuesta = [
             "mensaje" => "Hay campo(s) vacío(s) en el formulario.",
             "status" => "error"

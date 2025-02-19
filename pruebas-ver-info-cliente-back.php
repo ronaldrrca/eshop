@@ -1,3 +1,9 @@
+<?php
+session_start();
+$_SESSION['id_cliente'] = "2";
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,21 +14,23 @@
 <body>
     <form action="./backend/clients/ver-info-cliente-back.php" METHOD="POST">
         <label for="id">Id</label>
-        <input type="number" name="id" id="">
+        <input type="number" name="id" id="id" value="2">
         <!-- <label for="nombre">Nombre</label>
         <input type="text" name="nombre" id="">
         <label for="usuario">Usuario</label>
         <input type="text" name="usuario" id=""> -->
-        <!-- <label for="email">Email</label>
-        <input type="email" name="email" id=""> -->
-        <!-- <label for="email_confirmacion">Repita el email</label>
-        <input type="email" name="email_confirmacion" id="">
+        <!-- <label for="email_actual">Email</label>
+        <input type="email" name="email_actual" id="email_actual" hidden value="emailclientepruebas2@gmail.com">
+        <label for="email_nuevo">Nuevo email</label>
+        <input type="email" name="email_nuevo" id="email_nuevo">
+        <label for="email_confirmacion">Repita el email</label>
+        <input type="email" name="email_confirmacion" id="email_confirmacion">
         <label for="telefono">Teléfono</label>
-        <input type="tel" name="telefono" id="">
+        <input type="tel" name="telefono" id="telefono">
         <label for="direccion">Dirección</label>
-        <input type="text" name="direccion" id=""> -->
-        <!-- <label for="password">Password</label>
-        <input type="password" name="password" id=""> -->
+        <input type="text" name="direccion" id="direccion">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password"> -->
         <!-- <label for="password_confirmacion">Password_confirmación</label>
         <input type="password" name="password_confirmacion" id="">
         <label for="rol">Rol</label>
