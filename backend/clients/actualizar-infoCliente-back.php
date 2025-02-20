@@ -13,10 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email_nuevo = trim($_POST["email_nuevo"]); 
             $email_confirmacion = trim($_POST['email_confirmacion']);
             $telefono = isset($_POST['telefono']) ? trim($_POST["telefono"]) : "";
-            $direccion = isset($_POST['direccion']) ? trim($_POST["direccion"]) : "";
             $password = trim($_POST['password']);
             // echo "sesion id cliente: " . $_SESSION['id_cliente'] . " / " . "email actual: " . $email_actual . " / " . "email nuevo: " . $email_nuevo . " / " 
-            // . "email confirmacion: " . $email_confirmacion . " / " . "telefono: " . $telefono . " / " . "direccion: " . $direccion . " / " . "password: " . $password;
+            // . "email confirmacion: " . $email_confirmacion . " / " . "telefono: " . $telefono . " / "  . "password: " . $password;
             // die();TESTING**************************************************************
             
             // Validar que los campos no estén vací­os
@@ -101,8 +100,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
                 // Si todo salé bien a este punto...
             
-                $stmt = $conexion->prepare("CALL actualizarCliente(?, ?, ?, ?)");
-                $stmt->bind_param("ssss", $id, $email_nuevo, $telefono, $direccion);
+                $stmt = $conexion->prepare("CALL actualizarCliente(?, ?, ?)");
+                $stmt->bind_param("iss", $id, $email_nuevo, $telefono);
                     
                 // Actualizar el cliente en la base de datos
                 if ($stmt->execute()) {
