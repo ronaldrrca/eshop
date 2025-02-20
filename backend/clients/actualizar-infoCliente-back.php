@@ -6,7 +6,7 @@ header('Content-Type: application/json');  // Indicar que la respuesta es JSON
 //Verificamos si el id recibido es el mismo de la sesión
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $respuesta = [];
-        $id = trim($_POST["id"]);
+    $id = trim($_POST["id"]);
         // echo $id; die();TESTING**************************************************************
     if (isset($_SESSION['id_cliente']) && $_SESSION['id_cliente'] == $id) {
             $email_actual = trim($_POST["email_actual"]);// Lo recibimos como campo oculto del html, el valor original para comparlo con el que llegó por el formulario
@@ -146,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $respuesta = [
             "mensaje" => "No existe un asesión iniciada, o el id enviado no corresponde al id de la sesión.",
-            "status" => "error",
+            "status" => "error"
             ];
 
             echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);

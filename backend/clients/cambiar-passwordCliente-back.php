@@ -28,8 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ];
             
             echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
+            // die();TESTING**************************************************************
             $respuesta = "";
-            // exit();TESTING**************************************************************
+            exit();
         }
 
         // Verificamos que el nuevo password y el password de confirmación, sean iguales

@@ -10,7 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
     $email_confirmacion = trim($_POST['email_confirmacion']);
     $telefono = isset($_POST['telefono']) ? trim($_POST["telefono"]) : "";
-    $direccion = isset($_POST['direccion']) ? trim($_POST["direccion"]) : "";
     $password = trim($_POST["password"]);
     $password_confirmacion = trim($_POST["password_confirmacion"]);
 
@@ -96,8 +95,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $passwordHasheada = password_hash($password, PASSWORD_DEFAULT);
 
     // Insertar el cliente en la base de datos
-    $stmt = $conexion->prepare("CALL registrarCliente(?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $nombre, $email, $telefono, $direccion, $passwordHasheada);
+    $stmt = $conexion->prepare("CALL registrarCliente(?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $nombre, $email, $telefono, $passwordHasheada);
 
     if ($stmt->execute()) {
         // Obtener el ID del cliente reciénn registrado
