@@ -27,7 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
 
-
           
         // Realizando la consulta a la base de datos
         $stmt = $conexion->prepare("CALL eliminarDireccionCliente(?)");
