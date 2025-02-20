@@ -3,8 +3,6 @@ session_start();
 require_once '../conexion.php';
 header("Content-Type: application/json");
 
-$respuesta = [];
-
 // Verificar conexión
 if ($conexion->connect_error) {
     echo json_encode(["mensaje" => "Error de conexión a la base de datos", "status" => "error"]);
@@ -15,6 +13,8 @@ if ($conexion->connect_error) {
 $id = (isset($_POST['id']) ? trim($_POST['id']) : "");
 // echo "id recibido: " . $id; die(); TESTING**************************************************************
 if (isset($_SESSION['id_cliente']) && $_SESSION['id_cliente'] == $id ) {
+
+    $respuesta = [];
     // echo "sesión cliente: " . $_SESSION['id_cliente'] . " es igual al id recibido: " . $id; die(); TESTING************************************************************** 
     // Preparar la consulta
     $stmt = $conexion->prepare("CALL verInfoCliente(?)");
