@@ -18,7 +18,7 @@ if (isset($_SESSION['id_cliente']) && $_SESSION['id_cliente'] == $id) {
     $respuesta = [];
     
     // Preparar la consulta
-    $stmt = $conexion->prepare("CALL verdata(?)");
+    $stmt = $conexion->prepare("CALL verCarrito(?)");
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $resultado = $stmt->get_result();
