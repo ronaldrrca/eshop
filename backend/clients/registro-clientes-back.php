@@ -3,7 +3,7 @@ session_start();
 require_once "../conexion.php"; 
 header('Content-Type: application/json');  // Indicar que la respuesta es JSON
 
-$respuesta = "";
+$respuesta = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = ucwords(strtolower(trim($_POST["nombre"])));
@@ -21,8 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ];
         
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-        $respuesta = "";
-        header("Location: formulario-registro-cliente.php");
+        // header("Location: formulario-registro-cliente.php");
         exit();
     }
 
@@ -35,8 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ];
         
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-        $respuesta = "";
-        header("Location: formulario-registro-cliente.php");
+        // header("Location: formulario-registro-cliente.php");
         exit();
     }
 
@@ -49,8 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ];
         
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-        $respuesta = "";
-        header("Location: formulario-registro-cliente.php");
+        // header("Location: formulario-registro-cliente.php");
         exit();
     }
 
@@ -63,8 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ];
         
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-        $respuesta = "";
-        header("Location: formulario-registro-cliente.php");
+        // header("Location: formulario-registro-cliente.php");
         exit();
     }
 
@@ -81,8 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ];
         
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-        $respuesta = "";
-        header("Location: formulario-registro-cliente.php");
+        // header("Location: formulario-registro-cliente.php");
         exit();
     }
 
@@ -107,18 +102,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $respuesta = [
             "mensaje" => "Registrado con éxito.",
-            "status" => "ok"
+            "status" => "success"
         ];
         
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON 
-        $respuesta = "";
-;        
+                
         if (isset($_SESSION['redirect_to'])) {
             header("Location: ../../" . $_SESSION['redirect_to']); // Redirigir al panel del cliente
-            exit();
+            exit;
         } else {
             header("Location: ../../index.php"); // Redirigir al panel del cliente
-            exit();
+            exit;
         }
 
     } else {
@@ -128,8 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ];
         
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-        $respuesta = "";
-        header("Location: formulario-registro-cliente.php");
+        // header("Location: formulario-registro-cliente.php");
         exit();
     }
 

@@ -21,10 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ];
             
             echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-            $respuesta = "";
-            // die();TESTING**************************************************************
             // header("Location: ../../ver_info_cliente.php");
-            exit();
+            exit;
         }
 
           
@@ -35,13 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             $respuesta = [
                 "mensaje" => "Dirección eliminada con éxito.",
-                "status" => "ok"
+                "status" => "success"
             ];
             
             echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-            // die();TESTING**************************************************************
-            $respuesta = "";
-            // header("Location: formulario-registro-cliente.php");
+           // header("Location: formulario-registro-cliente.php");
             exit();
         }
 
@@ -55,11 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ];
 
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
-        $respuesta = "";
-        exit();
+        exit;
     }
-
-    
 
 } else {
     echo 'No se recibieron datos';

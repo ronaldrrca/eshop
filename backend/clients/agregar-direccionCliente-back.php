@@ -26,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ];
             
             echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-            $respuesta = "";
             // header("Location: ../../ver_info_cliente.php");
             exit();
         }
@@ -45,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
             // die();TESTING**************************************************************
-            $respuesta = "";
+            
             // header("Location: formulario-registro-cliente.php");
             exit();
         }
@@ -58,12 +57,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt->execute()) {
             $respuesta = [
                 "mensaje" => "Dirección registrada con éxito.",
-                "status" => "error"
+                "status" => "success"
             ];
             
             echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
             // die();TESTING**************************************************************
-            $respuesta = "";
             header("Location: formulario-registro-cliente.php");
             exit();
         }
@@ -78,7 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ];
 
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
-        $respuesta = "";
         exit();
     }
 

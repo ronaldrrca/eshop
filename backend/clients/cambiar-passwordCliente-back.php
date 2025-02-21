@@ -28,9 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ];
             
             echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-            // die();TESTING**************************************************************
-            $respuesta = "";
-            exit();
+            exit;
         }
 
         // Verificamos que el nuevo password y el password de confirmación, sean iguales
@@ -41,8 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ];
             
             echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-            $respuesta = "";
-            // exit();TESTING**************************************************************        
+            exit;   
         }
 
 
@@ -68,12 +65,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($stmt->execute()) {
                 $respuesta = [
                     "mensaje" => "Contraseña cambiada exitosamente",
-                    "status" => "ok"
+                    "status" => "succes"
                 ];
                 
                 echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-                $respuesta = "";
-                // die();TESTING**************************************************************
+                exit;
+
             } else {
                 $respuesta = [
                     "mensaje" => "Ocurrió un error y no se generó la actualización",
@@ -81,7 +78,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ];
                 
                 echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-                $respuesta = "";
                 exit();
             }
 
@@ -94,10 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ];
             
             echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-            $respuesta = "";
-            // die();TESTING**************************************************************
+            exit;
         }
-
 
     } else {
         $respuesta = [
@@ -106,8 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ];
 
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
-        $respuesta = "";
-        die();
+        exit;
     }
 
 } else {
@@ -117,6 +110,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ];
     
     echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-    $respuesta = "";
+    
     // header("Location: ../../ver_info_cliente.php");
 }
