@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['id_cliente'] = "2";
+$_SESSION['id_cliente'] = "8";
 
 ?>
 
@@ -12,8 +12,8 @@ $_SESSION['id_cliente'] = "2";
     <title>Document</title>
 </head>
 <body>
-    <form action="./backend/clients/agregar-direccionCliente-back.php" METHOD="POST">
-        <input type="number" name="id" id="id" value="2" hidden>
+    <form action="../backend/clients/agregarEditar-direccionCliente-back.php" METHOD="POST">
+        <input type="number" name="id" id="id" value="8" hidden>
         <label for="departamento">Departamento</label>
         <input type="text" name="departamento" id="departamento">
         <label for="cuidad">Cuidad o municipio</label>

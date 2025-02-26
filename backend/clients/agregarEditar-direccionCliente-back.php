@@ -17,7 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $barrio = trim($_POST['barrio']);
         
         // echo "id: " . $id . " / " . "departamento: " . $departamento . " / " . "cuidad: " . $cuidad . " / " . "direccion: " 
-        // . $direccion_envio . " / " . "barrio: " . $barrio; die();TESTING**************************************************************
+        // . $direccion_envio . " / " . "barrio: " . $barrio; die();
+        // TESTING**************************************************************
 
         if (empty($id) || empty($departamento) || empty($cuidad) || empty($direccion_envio) || empty($barrio)) {
             $respuesta = [
@@ -31,28 +32,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
 
-        // Verificar si ya tiene una dirección registrada
-        $stmt = $conexion->prepare("CALL validarDireccionCliente(?)");
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        $stmt->store_result();
-        if ($stmt->num_rows > 0) {
-            $respuesta = [
-                "mensaje" => "Cliente ya cuenta con dirección registrada.",
-                "status" => "error"
-            ];
-            
-            echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
-            // die();TESTING**************************************************************
-            
-            // header("Location: formulario-registro-cliente.php");
-            exit();
-        }
-
-    
         // Realizando la consulta a la base de datos
-        $stmt = $conexion->prepare("CALL CrearDireccionCliente(?, ?, ?, ?, ?)");
-        $stmt->bind_param("issss", $id, $departamento, $cuidad, $direccion_envio, $barrio);
+        $stmt = $conexion->prepare("CALL agregarDireccionCliente(?, ?, ?, ?, ?)");
+        $stmt->bind_param("issss", $id, $departamento, $cuidad, $barrio, $direccion_envio);
         
         if ($stmt->execute()) {
             $respuesta = [
@@ -62,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
             // die();TESTING**************************************************************
-            header("Location: formulario-registro-cliente.php");
+            // header("Location: formulario-registro-cliente.php");
             exit();
         }
 

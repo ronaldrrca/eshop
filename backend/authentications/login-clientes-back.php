@@ -5,13 +5,6 @@ header("Content-Type: application/json");
 
 $respuesta = "";
 
-// Verificar conexión
-if ($conexion->connect_error) {
-    echo json_encode(["Error de conexión a la base de datos"]);
-    exit;
-}
-
-
 // Recibir datos del formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
@@ -26,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
         $respuesta = "";
-        header("Location: formulario-login-cliente.php");
+        // header("Location: formulario-login-cliente.php");
         exit();
     }
 
@@ -49,8 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ];
     
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON 
-        $respuesta = "";
-        
+                
         // Obtener la URL de redirección y luego eliminar la sesión
         if (isset($_SESSION['redirect_to'])) {
             $redirect_to = $_SESSION['redirect_to'];
@@ -70,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON 
         $respuesta = "";
-        header("Location: ../../login-cliente.php"); // Redirigir al panel del cliente
+        // header("Location: ../../login-cliente.php"); // Redirigir al panel del cliente
         exit();
     } 
 

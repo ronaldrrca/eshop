@@ -1,6 +1,7 @@
 <?php
 session_start();
-$_SESSION['id_cliente'] = "2";
+$_SESSION['id_usuario'] = "1";
+
 
 ?>
 
@@ -12,7 +13,7 @@ $_SESSION['id_cliente'] = "2";
     <title>Document</title>
 </head>
 <body>
-    <form action="./backend/clients/eliminar-direccionCliente-back.php" METHOD="POST">
+    <form action="../backend/users/eliminar-usuario-back.php" METHOD="POST">
         <label for="id">Id</label>
         <input type="number" name="id" id="id" value="2">
         

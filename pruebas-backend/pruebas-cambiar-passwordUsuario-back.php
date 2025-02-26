@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['id_cliente'] = "2";
+$_SESSION['id_usuario'] = "3";
 
 ?>
 
@@ -12,15 +12,15 @@ $_SESSION['id_cliente'] = "2";
     <title>Document</title>
 </head>
 <body>
-    <form action="../backend/clients/cambiar-passwordCliente-back.php" METHOD="POST">
+    <form action="../backend/users/cambiar-passwordUsuario-back.php" METHOD="POST">
         <label for="id">Id</label>
-        <input type="number" name="id" id="id" value="2">
+        <input type="number" name="id" id="id" value="3">
         <!-- <label for="nombre">Nombre</label>
         <input type="text" name="nombre" id=""> -->
-        <!-- <label for="usuario">Usuario</label>
-        <input type="text" name="usuario" id=""> -->
+        <label for="usuario">Usuario</label>
+        <input type="text" name="usuario" id="">
         <!-- <label for="email_actual">Email</label> -->
-        <input type="email" name="email" id="email_actual" hidden value="emailpruebas2_edit@gmail.com">
+        <!-- <input type="email" name="email" id="email_actual" hidden value="emailpruebas2_edit@gmail.com"> -->
         <!-- <label for="email_nuevo">Nuevo email</label>
         <input type="email" name="email_nuevo" id="email_nuevo"> -->
         <!-- <label for="email_confirmacion">Repita el email</label>

@@ -27,7 +27,7 @@ if (isset($_SESSION['id_cliente']) && $_SESSION['id_cliente'] == $id ) {
     // echo json_encode($cliente, JSON_UNESCAPED_UNICODE); die(); TESTING**************************************************************
 
     // Volvemos a verificar, si hay un resultado, que el id recibido es el mismo de la sesión
-    if ($cliente['id_cliente'] == $_SESSION['id_cliente']) {
+    if (isset($_SESSION['id_cliente']) && $_SESSION['id_cliente'] == $id) {
         
         // Inicializar array del data
         $data = [];

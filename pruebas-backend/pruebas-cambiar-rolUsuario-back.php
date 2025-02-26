@@ -1,6 +1,8 @@
 <?php
 session_start();
-$_SESSION['id_cliente'] = "6";
+$_SESSION['id_usuario'] = "1";
+$_SESSION['rol_usuario'] = "superadmin";
+
 
 ?>
 
@@ -12,10 +14,13 @@ $_SESSION['id_cliente'] = "6";
     <title>Document</title>
 </head>
 <body>
-    <form action="../backend/clients/ver-info-cliente-back.php" METHOD="POST">
+    <form action="../backend/users/cambiar-rolUsuario-back.php" METHOD="POST">
         <label for="id">Id</label>
-        <input type="number" name="id" id="id" value="6">
+        <input type="number" name="id" id="id" value="3">
+       
         
+        <label for="rol">Rol</label>
+        <input type="text" name="rol_nuevo" id="">
         <button type="submit">Registrar</button>
     </form>
 </body>

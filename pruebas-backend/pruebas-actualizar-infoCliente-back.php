@@ -12,7 +12,7 @@ $_SESSION['id_cliente'] = "2";
     <title>Document</title>
 </head>
 <body>
-    <form action="./backend/clients/actualizar-infoCliente-back.php" METHOD="POST">
+    <form action="../backend/clients/actualizar-infoCliente-back.php" METHOD="POST">
         <label for="id">Id</label>
         <input type="number" name="id" id="id" value="2">
         <!-- <label for="nombre">Nombre</label>
@@ -20,15 +20,15 @@ $_SESSION['id_cliente'] = "2";
         <!-- <label for="usuario">Usuario</label>
         <input type="text" name="usuario" id=""> -->
         <label for="email_actual">Email</label>
-        <input type="email" name="email_actual" id="email_actual" hidden value="actualizado@gmail.com">
+        <input type="email" name="email_actual" id="email_actual" hidden value="emailpruebas1@gmail.com">
         <label for="email_nuevo">Nuevo email</label>
         <input type="email" name="email_nuevo" id="email_nuevo">
         <label for="email_confirmacion">Repita el email</label>
         <input type="email" name="email_confirmacion" id="email_confirmacion">
         <label for="telefono">Teléfono</label>
         <input type="tel" name="telefono" id="telefono">
-        <label for="direccion">Dirección</label>
-        <input type="text" name="direccion" id="direccion">
+        <!-- <label for="direccion">Dirección</label>
+        <input type="text" name="direccion" id="direccion"> -->
         <label for="password">Password</label>
         <input type="password" name="password" id="password">
         <!-- <label for="password_confirmacion">Password_confirmación</label>

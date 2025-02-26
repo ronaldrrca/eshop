@@ -3,14 +3,7 @@ session_start();
 require_once '../conexion.php';
 header("Content-Type: application/json");
 
-$respuesta = "";
-
-// Verificar conexión
-if ($conexion->connect_error) {
-    echo json_encode(["Error de conexión a la base de datos"]);
-    exit;
-}
-
+$respuesta = [];
 
 // Recibir datos del formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
         $respuesta = "";
-        header("Location: formulario-login-cliente.php");
+        // header("Location: formulario-login-cliente.php");
         exit();
     }
 
@@ -40,7 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     if ($usuario && password_verify($password, $usuario["password_usuario"])) {
         // Iniciar sesión con los datos del usuario
-        $_SESSION["usuario"] = $usuario["nombre_usuario"];
+        $_SESSION["usuario"] = $usuario["usuario_usuario"];
+        $_SESSION['nombre_usuario'] = $usuario['nombre_usuario'];
+        $_SESSION["rol_usuario"] = $usuario["rol_usuario"];
                    
         $respuesta = [
             "mensaje" => "Inicio de sesión exitoso.",
@@ -49,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON 
         $respuesta = "";
-        header("Location: ../../index.php"); // Redirigir al panel del cliente
+        // header("Location: ../../index.php"); // Redirigir al panel del cliente
         exit();
       
 
@@ -62,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON 
         die();
         $respuesta = "";
-        header("Location: ../../login-cliente.php"); // Redirigir al panel del cliente
+        // header("Location: ../../login-cliente.php"); // Redirigir al panel del cliente
         exit();
     } 
 

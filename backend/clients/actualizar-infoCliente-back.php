@@ -16,7 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $password = trim($_POST['password']);
             // echo "sesion id cliente: " . $_SESSION['id_cliente'] . " / " . "email actual: " . $email_actual . " / " . "email nuevo: " . $email_nuevo . " / " 
             // . "email confirmacion: " . $email_confirmacion . " / " . "telefono: " . $telefono . " / "  . "password: " . $password;
-            // die();TESTING**************************************************************
+            // die();
+            // TESTING**************************************************************
             
             // Validar que los campos no estén vací­os
             if (empty($id) || empty($email_nuevo) || empty($email_actual) || empty($email_confirmacion)|| empty($password)) {
@@ -56,7 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $stmt->close(); // Cerrar el statement
 
-            // echo json_encode($cliente, JSON_UNESCAPED_UNICODE); die();TESTING**************************************************************
+            // echo json_encode($cliente, JSON_UNESCAPED_UNICODE); die();
+            // TESTING**************************************************************
 
             // Validamos la contraseña del cliente
             if (password_verify($password, $cliente["password_cliente"])) {
@@ -85,7 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         
                         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
 
-                        // die();TESTING**************************************************************
+                        die();
+                        // TESTING**************************************************************
 
                         // header("Location: ../../ver_info_cliente.php");
                         exit();
@@ -98,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Si todo salé bien a este punto...
             
                 $stmt = $conexion->prepare("CALL actualizarCliente(?, ?, ?)");
-                $stmt->bind_param("iss", $id, $email_nuevo, $telefono);
+                $stmt->bind_param("iis", $id, $telefono, $email_nuevo);
                     
                 // Actualizar el cliente en la base de datos
                 if ($stmt->execute()) {
@@ -109,9 +112,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         
                     echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON 
 
-                    die();
-
-                                            
                 } else {
                     $respuesta = [
                         "mensaje" => "Se produjo un error.",
@@ -124,7 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->close();
                 $conexion->close();
             
-                header("Location: ../../ver_info_cliente.php");
+                // header("Location: ../../ver_info_cliente.php");
             
             } else {
                 $respuesta = [
