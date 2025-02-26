@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: ../../" . $_SESSION['redirect_to']); // Redirigir al panel del cliente
             exit;
         } else {
-            // header("Location: ../../index.php"); // Redirigir al panel del cliente
+            // header("Location: .. /../index.php"); // Redirigir al panel del cliente
             exit;
         }
 
@@ -129,6 +129,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     $conexion->close();
 } else {
-    echo 'No se recibieron datos';
+    $respuesta = [
+        "mensaje" => "No se recibieron datos.",
+        "status" => "error"
+    ];
+    
+    echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);  // Convertir array PHP a JSON
+    // header("Location: formulario-registro-cliente.php");
+    exit();
 }
 ?>
