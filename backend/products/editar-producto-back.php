@@ -8,20 +8,20 @@ $respuesta = [];
 // Validemos que se cuente con los privilegios necesario con rol de admin o superadmin
 if (isset($_SESSION['rol_usuario']) && $_SESSION['rol_usuario'] == 'superadmin' || $_SESSION['rol_usuario'] == 'admin') {
     // Se inicializan las variables para que estén disponibles
+    $id_producto = 0;
     $nombre_producto = "";
     $descripcion_producto = "";
     $categoria_producto = "";
-    $codigo_barras_producto = "";
     $marca_producto = "";
     $precio_producto = 0;
     $stock_producto = 0; 
 
     // Validamos que se reciban datos por POST
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $id_producto = trim($_POST['id_producto']);
         $nombre_producto = trim($_POST['nombre_producto']);
         $descripcion_producto = trim($_POST['descripcion_producto']);
         $categoria_producto = trim($_POST['categoria_producto']);
-        $codigo_barras_producto = trim($_POST['codigo_barras_producto']);
         $marca_producto = trim($_POST['marca_producto']);
         $precio_producto = trim($_POST['precio_producto']);
         $stock_producto = trim($_POST['stock_producto']);
@@ -38,7 +38,7 @@ if (isset($_SESSION['rol_usuario']) && $_SESSION['rol_usuario'] == 'superadmin' 
     }
 
     // Validamos que se reciban todos los datos necesarios
-    if (empty($nombre_producto) || empty($descripcion_producto) || empty($categoria_producto) || empty($codigo_barras_producto)|| empty($marca_producto) || empty($precio_producto) || empty($stock_producto)) {
+    if (empty($id_producto) || empty($nombre_producto) || empty($descripcion_producto) || empty($categoria_producto) || empty($marca_producto) || empty($precio_producto) || empty($stock_producto)) {
         $respuesta = [
             "mensaje" => "Hay campo(s) vacío(s) en el formulario.",
             "status" => "error"
@@ -50,44 +50,26 @@ if (isset($_SESSION['rol_usuario']) && $_SESSION['rol_usuario'] == 'superadmin' 
     }
 
 
-    // Verificar si el código de barras ya existe
-    $consulta = $conexion->prepare("CALL validarCodigoDeBarras(?)");
-    $consulta->bind_param("s", $codigo_barras_producto);
-    $consulta->execute();
-    $consulta->store_result();
+    // Editando el producto con el ID específico
+    $stmt = $conexion->prepare("CALL editarProducto(?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("issssii", $id_producto, $nombre_producto, $descripcion_producto, $categoria_producto, $marca_producto, $precio_producto, $stock_producto);
 
-    if ($consulta->num_rows > 0) {
-        // Código de barras ya existe
+    if ($stmt->execute()) {
         $respuesta = [
-            "mensaje" => "Código de barras del producto ya existe en la base de datos.",
-            "status" => "error"
+            "mensaje" => "Producto creado con éxito.",
+            "status" => "success"
         ];
     } else {
-        // Liberar resultados y cerrar la consulta anterior
-        $consulta->free_result();
-        $consulta->close();
-        
-        // Insertar el producto porque no existe
-        $stmt = $conexion->prepare("CALL crearProducto(?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssii", $nombre_producto, $descripcion_producto, $categoria_producto, $codigo_barras_producto, $marca_producto, $precio_producto, $stock_producto);
-
-        if ($stmt->execute()) {
-            $respuesta = [
-                "mensaje" => "Producto creado con éxito.",
-                "status" => "success"
-            ];
-        } else {
-            $respuesta = [
-                "mensaje" => "Error en la ejecución: " . $stmt->error,
-                "status" => "error"
-            ];
-        }
-        
-        if ($stmt) {  // Solo cerramos si $stmt es válido
-            $stmt->close();
-        }
+        $respuesta = [
+            "mensaje" => "Error en la ejecución: " . $stmt->error,
+            "status" => "error"
+        ];
     }
-
+        
+    if ($stmt) {  // Solo cerramos si $stmt es válido
+        $stmt->close();
+    }
+    
     // Cerrar la conexión
     $conexion->close();
 
