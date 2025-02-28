@@ -9,7 +9,7 @@ $respuesta = [];
 if (isset($_SESSION['rol_usuario']) && $_SESSION['rol_usuario'] == 'superadmin' || $_SESSION['rol_usuario'] == ' admin') {
 
     // Preparar la consulta
-    $stmt = $conexion->prepare("CALL verVentas()");
+    $stmt = $conexion->prepare("CALL verTodosLosProductos()");
     $stmt->execute();
     $resultado = $stmt->get_result();
 
